@@ -1,17 +1,14 @@
-"""
 ╔══════════════════════════════════════════════════════════════════════╗
-║  Saudi Vision 2030 Strategic Intelligence Hub                       ║
-║  مؤشر تقدم رؤية المملكة العربية السعودية 2030                      ║
+║  Saudi Vision 2030 Strategic Intelligence Hub                        ║
+║  مؤشر تقدم رؤية المملكة العربية السعودية 2030                       ║
 ║  Built by: Mohammad Zaid | Jamia Hamdard | Google Gen AI APAC 2026  ║
 ╚══════════════════════════════════════════════════════════════════════╝
-"""
 
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
-from io import StringIO
 
 # ══════════════════════════════════════════════════════════════
 # PAGE CONFIG
@@ -329,8 +326,8 @@ with st.sidebar:
                 border:1.5px solid #BBF7D0; border-radius:12px;
                 padding:1rem; margin-bottom:10px;">
         <p style="font-size:12px; font-weight:800; color:#004D26;
-                   margin:0 0 4px; text-transform:uppercase;
-                   letter-spacing:0.8px;">
+                  margin:0 0 4px; text-transform:uppercase;
+                  letter-spacing:0.8px;">
             📩 Subscribe to Saudi Insights
         </p>
         <p style="font-size:11px; color:#5A7080; margin:0 0 8px;
@@ -357,8 +354,8 @@ with st.sidebar:
                 border:1.5px solid #D4A017; border-radius:12px;
                 padding:1rem; margin-bottom:10px;">
         <p style="font-size:12px; font-weight:800; color:#92400E;
-                   margin:0 0 6px; text-transform:uppercase;
-                   letter-spacing:0.7px;">
+                  margin:0 0 6px; text-transform:uppercase;
+                  letter-spacing:0.7px;">
             💼 Enterprise Consulting
         </p>
         <p style="font-size:12px; color:#334155; line-height:1.6; margin:0 0 8px;">
@@ -436,6 +433,20 @@ with st.sidebar:
 # ══════════════════════════════════════════════════════════════
 # HEADER
 # ══════════════════════════════════════════════════════════════
+kpi_items_html = "".join([f'''
+<div style="text-align:center; min-width:80px;">
+  <p style="color:#FFE080; font-size:1.25rem; font-weight:800; margin:0;">{val}</p>
+  <p style="color:rgba(255,255,255,0.72); font-size:9.5px; margin:2px 0 0;
+             font-family:\'IBM Plex Sans Arabic\',sans-serif;">{ar}</p>
+</div>''' for val, ar in [
+    ("50.2%", "الناتج غير النفطي"),
+    ("115M", "السياح الدوليون"),
+    ("33.6%", "توظيف المرأة"),
+    ("$122B", "استثمار الذكاء الاصطناعي"),
+    ("79%", "المدفوعات الرقمية"),
+    ("SAR 134B", "إيرادات السياحة"),
+]])
+
 st.markdown(f"""
 <div style="background:linear-gradient(135deg,#003D1E 0%,#005C2E 40%,#007A3D 75%,#00A651 100%);
             border-radius:20px; padding:1.75rem 2rem; margin-bottom:1.75rem;
@@ -480,23 +491,10 @@ st.markdown(f"""
                     border:1px solid rgba(212,160,23,0.42);">⭐ Vision 2030 Aligned</span>
     </div>
   </div>
-  <!-- Arabic KPI Strip -->
   <div style="margin-top:1.2rem; padding-top:1rem;
               border-top:1px solid rgba(255,255,255,0.16);
               display:flex; gap:24px; flex-wrap:wrap;">
-    {"".join([f'''
-    <div style="text-align:center; min-width:80px;">
-      <p style="color:#FFE080; font-size:1.25rem; font-weight:800; margin:0;">{val}</p>
-      <p style="color:rgba(255,255,255,0.72); font-size:9.5px; margin:2px 0 0;
-                 font-family:'IBM Plex Sans Arabic',sans-serif;">{ar}</p>
-    </div>''' for val, ar in [
-        ("50.2%","الناتج غير النفطي"),
-        ("115M","السياح الدوليون"),
-        ("33.6%","توظيف المرأة"),
-        ("$122B","استثمار الذكاء الاصطناعي"),
-        ("79%","المدفوعات الرقمية"),
-        ("SAR 134B","إيرادات السياحة"),
-    ]])}
+    {kpi_items_html}
   </div>
 </div>
 """, unsafe_allow_html=True)
@@ -693,533 +691,68 @@ with tab1:
             ], ignore_index=True)
             st.download_button("📥 Download", to_csv(dig_export),
                                "v2030_digital_forecast.csv", "text/csv",
-                               use_container_width=True)
+                               use_container_width=True, key="dig_dl")
     with dc2:
         st.markdown("""
         <div class="icard">
             <h4>💳 Digital Economy</h4>
             <div class="iitem">
                 <div class="idot" style="background:#005C2E;"></div>
-                <p class="itxt"><b>79%</b> digital payment adoption 2024 —
-                up from just 31% in 2016.</p>
+                <p class="itxt"><b>79%</b> digital payment adoption 2024 — up from just 31% in 2016.</p>
             </div>
             <div class="iitem">
                 <div class="idot" style="background:#2563EB;"></div>
-                <p class="itxt">E-commerce market reached
-                <b>SAR 85B</b> in 2024 — growing 20%+ YoY.</p>
+                <p class="itxt">E-commerce market reached <b>SAR 85B</b> in 2024 — growing 20%+ YoY.</p>
             </div>
             <div class="iitem">
                 <div class="idot" style="background:#D4A017;"></div>
-                <p class="itxt"><b>STC Pay, stc, Tamara, Foodics</b> —
-                Saudi fintech unicorns fueling digital growth.</p>
+                <p class="itxt"><b>Fintech Leaders:</b> STC Pay, Tamara, and Foodics driving localized digital transaction ecosystems.</p>
             </div>
         </div>
         """, unsafe_allow_html=True)
-
-    # Premium Banner
-    st.markdown("""
-    <div class="premium-banner">
-        <p style="color:#D4A017; font-size:12px; font-weight:800;
-                   text-transform:uppercase; letter-spacing:1px; margin:0 0 6px;">
-            🔒 Premium Deep-Dive Report Available
-        </p>
-        <p style="color:rgba(255,255,255,0.85); font-size:13px; margin:0 0 4px;">
-            <b>Saudi Economy Intelligence Report 2026</b> — Full GDP breakdown,
-            sector analysis, investment forecasts to 2030.
-        </p>
-        <p style="color:rgba(255,255,255,0.60); font-size:12px; margin:0;">
-            📩 Contact: zaidug987198@gmail.com &nbsp;|&nbsp;
-            <b style="color:#D4A017;">SAR 500 – 2,000</b> &nbsp;|&nbsp;
-            Bilingual Arabic–English format available
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════
 # TAB 2 — TOURISM
 # ══════════════════════════════════════════════════════════════
 with tab2:
-    st.markdown("""
-    <p style="background:#F0FDF6; padding:8px 14px; border-radius:8px;
-               border-right:3px solid #005C2E; font-size:12px; color:#5A7080;
-               font-family:'IBM Plex Sans Arabic',sans-serif; direction:rtl; text-align:right;">
-       أداء قطاع السياحة مع توقعات ML حتى 2030 · الهدف: 150 مليون زائر سنوياً
-    </p>
-    """, unsafe_allow_html=True)
-    st.markdown('<span class="ml-badge">🤖 ML Forecast Active</span>', unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    col_chart, col_info = st.columns([2.3, 1])
-    with col_chart:
-        fig2 = go.Figure()
-        fig2.add_trace(go.Bar(
-            x=tourism_df["Year"], y=tourism_df["Visitors (M)"],
-            name="Actual Visitors (M)",
-            marker=dict(
-                color=[C["g1"],C["red"],C["gold"],C["g2"],C["g3"],C["g1"]],
-                line=dict(color=C["white"], width=1.5)
-            ),
-            text=tourism_df["Visitors (M)"].astype(str)+"M",
-            textposition="outside",
-            textfont=dict(color=C["navy"], size=12.5, family="Outfit"),
-        ))
-        fig2.add_trace(go.Bar(
-            x=FORE_YEARS, y=[round(v,1) for v in tourism_fore],
-            name="Visitors ML Forecast (M)",
-            marker=dict(color="rgba(0,166,81,0.35)",
-                        line=dict(color=C["g3"], width=1.5)),
-            text=[f"{round(v,0):.0f}M*" for v in tourism_fore],
-            textposition="outside",
-            textfont=dict(color=C["g2"], size=12),
-        ))
-        fig2.add_hline(y=150, line_dash="dash", line_color=C["red"], line_width=2,
-                       annotation_text="  2030 Target: 150M visitors",
-                       annotation_font_color=C["red"], annotation_font_size=12)
-        fig2.update_layout(**CL("Tourism Visitors (M) + ML Forecast to 2030 | السياحة", [0,190]))
-        st.plotly_chart(fig2, use_container_width=True)
-
-        tr1, tr2 = st.columns([3,1])
-        with tr1:
-            proj_2030 = round(tourism_fore[-1], 0)
-            target_met = "✅ On track to meet" if proj_2030 >= 140 else "⚠️ May fall short of"
-            st.info(f"🤖 **ML Forecast 2030:** {proj_2030:.0f}M visitors projected. "
-                    f"{target_met} the 150M Vision 2030 target.")
-        with tr2:
-            t_export = pd.concat([
-                tourism_df,
-                pd.DataFrame({"Year": FORE_YEARS,
-                              "Visitors (M) Forecast": [round(v,1) for v in tourism_fore],
-                              "Target 2030": [150]*6})
-            ], ignore_index=True)
-            st.download_button("📥 Download", to_csv(t_export),
-                               "v2030_tourism_forecast.csv", "text/csv",
-                               use_container_width=True)
-
-    with col_info:
-        pct = int((115/150)*100)
-        st.markdown(f"""
-        <div class="icard">
-            <h4>✈️ Tourism | السياحة</h4>
-            <div style="text-align:center; margin-bottom:1rem;">
-                <p style="font-size:2.8rem; font-weight:800; color:#005C2E;
-                           margin:0; line-height:1;">76%</p>
-                <p style="font-size:11.5px; color:#5A7080; margin:3px 0 0;">
-                    of 2030 target reached<br>
-                    <span class="ar" style="font-size:11px;">76% من الهدف 150 مليون</span>
-                </p>
-            </div>
-            <div class="pb-wrap">
-                <div style="background:linear-gradient(90deg,#005C2E,#00A651);
-                             height:10px; width:{pct}%; border-radius:8px;"></div>
-            </div>
-            <div style="display:flex; justify-content:space-between;
-                        font-size:11px; color:#5A7080; margin-bottom:1rem;">
-                <span>0</span><span><b>115M</b></span><span>150M</span>
-            </div>
-            <div class="iitem">
-                <div class="idot" style="background:#005C2E;"></div>
-                <p class="itxt"><b>SAR 134B</b> revenue 2024 — up <b style="color:#005C2E;">38%</b> YoY</p>
-            </div>
-            <div class="iitem">
-                <div class="idot" style="background:#2563EB;"></div>
-                <p class="itxt"><b>250,000+</b> new tourism jobs for Saudi nationals</p>
-            </div>
-            <div class="iitem">
-                <div class="idot" style="background:#D4A017;"></div>
-                <p class="itxt">NEOM, Red Sea, Qiddiya driving premium international tourism</p>
-            </div>
-            <div style="background:#FFFBEB; border-radius:10px; padding:10px 12px;
-                        margin-top:8px; border:1px solid #FDE68A;">
-                <p style="margin:0; font-size:11px; font-weight:700; color:#92400E;">
-                    📡 Source: Saudi Tourism Authority
-                </p>
-                <p style="margin:0; font-size:11px; color:#5A7080;">sta.gov.sa · vision2030.gov.sa</p>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class="premium-banner">
-        <p style="color:#D4A017; font-size:12px; font-weight:800;
-                   text-transform:uppercase; letter-spacing:1px; margin:0 0 6px;">
-            🔒 Premium Tourism Intelligence Report
-        </p>
-        <p style="color:rgba(255,255,255,0.85); font-size:13px; margin:0 0 4px;">
-            Detailed Saudi tourism sector analysis — hotel occupancy,
-            source markets, MICE industry, Hajj/Umrah tech opportunities.
-        </p>
-        <p style="color:rgba(255,255,255,0.60); font-size:12px; margin:0;">
-            📩 zaidug987198@gmail.com &nbsp;|&nbsp;
-            <b style="color:#D4A017;">SAR 750 – 1,500</b>
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("##### ✈️ International Visitors Trend (Millions)")
+    fig_t = go.Figure()
+    fig_t.add_trace(go.Scatter(x=tourism_df["Year"], y=tourism_df["Visitors (M)"], name="Actual Visitors", mode="lines+markers", line=dict(color=C["b2"], width=3)))
+    fig_t.add_trace(go.Scatter(x=FORE_YEARS, y=tourism_fore, name="ML Forecast", mode="lines+markers", line=dict(color=C["b3"], width=2, dash="dash")))
+    fig_t.add_trace(go.Scatter(x=tourism_df["Year"].tolist() + FORE_YEARS, y=[150]*12, name="2030 Target", mode="lines", line=dict(color=C["gold"], width=1.5, dash="dot")))
+    fig_t.update_layout(**CL("Tourism Inflow Metrics & Vision 2030 Horizons"))
+    st.plotly_chart(fig_t, use_container_width=True)
 
 # ══════════════════════════════════════════════════════════════
-# TAB 3 — SECTORS & GIGA-PROJECTS
+# TAB 3 — SECTORS & GIGA PROJECTS
 # ══════════════════════════════════════════════════════════════
 with tab3:
-    cp, cb = st.columns(2)
-    with cp:
-        fig3a = px.pie(
-            sectors_df, values="Investment (SAR B)", names="Sector",
-            title="Investment Distribution | توزيع الاستثمار (SAR B)",
-            hole=0.42,
-            color_discrete_sequence=[C["g1"],C["g2"],C["g3"],C["gold"],C["b2"],"#8B5CF6"],
-        )
-        fig3a.update_traces(
-            textinfo="percent+label",
-            textfont=dict(size=12.5, color=C["navy"], family="Outfit"),
-            hovertemplate="<b>%{label}</b><br>SAR %{value}B<br>%{percent}<extra></extra>",
-        )
-        fig3a.update_layout(**CL(""))
-        st.plotly_chart(fig3a, use_container_width=True)
-    with cb:
-        fig3b = px.bar(
-            sectors_df.sort_values("Growth %", ascending=True),
-            x="Growth %", y="Sector", orientation="h",
-            title="YoY Growth Rate | معدل النمو السنوي (%)",
-            color="Growth %",
-            color_continuous_scale=["#A7F3D0","#007A3D","#004D26"],
-            text="Growth %",
-        )
-        fig3b.update_traces(
-            texttemplate="%{text}%", textposition="outside",
-            textfont=dict(color=C["navy"], size=12.5, family="Outfit"),
-        )
-        fig3b.update_layout(**CL(""), coloraxis_showscale=False)
-        st.plotly_chart(fig3b, use_container_width=True)
-
-    sec_r1, sec_r2 = st.columns([3,1])
-    with sec_r2:
-        st.download_button("📥 Download Sector Data", to_csv(sectors_df),
-                           "v2030_sectors.csv", "text/csv", use_container_width=True)
-
-    # Giga-Projects
-    st.markdown('<p class="sec-label" style="margin-top:1rem;">المشاريع العملاقة — Giga-Projects Tracker</p>',
-                unsafe_allow_html=True)
-    gcols = st.columns(5)
-    clrs = [C["g1"],C["g2"],C["gold"],C["b2"],C["g3"]]
-    for i, (_, row) in enumerate(giga_df.iterrows()):
-        with gcols[i]:
-            st.markdown(f"""
-            <div style="background:#FFFFFF; border:1.5px solid #E4EAF2;
-                        border-radius:14px; padding:1rem;
-                        border-top:4px solid {clrs[i]};
-                        box-shadow:0 2px 10px rgba(0,0,0,0.05); text-align:center;">
-                <p style="font-size:14px; font-weight:800; color:{clrs[i]}; margin:0 0 3px;">
-                    {row['Project']}</p>
-                <p style="font-size:11px; color:#5A7080; margin:0 0 7px;">{row['Focus']}</p>
-                <p style="font-size:1.35rem; font-weight:800; color:#0D1F2D; margin:0 0 5px;">
-                    ${row['Budget($B)']}B</p>
-                <span style="background:{clrs[i]}18; color:{clrs[i]};
-                              font-size:10px; font-weight:700;
-                              padding:2px 9px; border-radius:12px;">{row['Status']}</span>
-            </div>
-            """, unsafe_allow_html=True)
-
-    # Sector table
-    st.markdown("<br>", unsafe_allow_html=True)
-    rows_html = "".join([f"""
-    <tr style="background:{'#F4F7FB' if i%2==0 else '#FFFFFF'}; border-bottom:1px solid #E4EAF2;">
-        <td style="padding:11px 16px; color:#0D1F2D; font-weight:600;">{r['Sector']}</td>
-        <td style="padding:11px 16px; color:#0D1F2D; font-weight:700; text-align:right;">
-            SAR {r['Investment (SAR B)']}B</td>
-        <td style="padding:11px 16px; text-align:right;">
-            <span style="background:#E6F7EE; color:#005C2E; font-weight:700;
-                          padding:3px 10px; border-radius:12px; font-size:12px;">
-                ↑ {r['Growth %']}%</span></td>
-        <td style="padding:11px 16px; color:#5A7080; text-align:right;">{r['Jobs Created (000s)']}K+</td>
-    </tr>""" for i,(_, r) in enumerate(sectors_df.iterrows())])
-
-    st.markdown(f"""
-    <table style="width:100%; border-collapse:collapse; font-family:Outfit,sans-serif;
-                  font-size:13px; background:#FFFFFF; border-radius:12px; overflow:hidden;
-                  border:1.5px solid #E4EAF2; box-shadow:0 2px 10px rgba(0,0,0,0.04);">
-        <thead>
-            <tr style="background:linear-gradient(135deg,#004D26,#007A3D);">
-                <th style="padding:12px 16px; color:#FFFFFF; text-align:left; font-weight:700;">
-                    Sector | القطاع</th>
-                <th style="padding:12px 16px; color:#FFFFFF; text-align:right; font-weight:700;">
-                    Investment</th>
-                <th style="padding:12px 16px; color:#FFFFFF; text-align:right; font-weight:700;">
-                    YoY Growth</th>
-                <th style="padding:12px 16px; color:#FFFFFF; text-align:right; font-weight:700;">
-                    Jobs Created</th>
-            </tr>
-        </thead>
-        <tbody>{rows_html}</tbody>
-    </table>
-    """, unsafe_allow_html=True)
+    st.markdown("##### 🏭 Sector Diagnostics & Giga Projects Pipeline")
+    sec_col1, sec_col2 = st.columns(2)
+    with sec_col1:
+        fig_sec = px.bar(sectors_df, x="Sector", y="Investment (SAR B)", color="Growth %", title="Strategic Investments vs Growth Yield", color_continuous_scale="Blugrn")
+        st.plotly_chart(fig_sec, use_container_width=True)
+    with sec_col2:
+        st.markdown("<br><br>", unsafe_allow_html=True)
+        st.dataframe(giga_df, use_container_width=True)
 
 # ══════════════════════════════════════════════════════════════
 # TAB 4 — EMPLOYMENT
 # ══════════════════════════════════════════════════════════════
 with tab4:
-    st.markdown("""
-    <p style="background:#F0FDF6; padding:8px 14px; border-radius:8px;
-               border-right:3px solid #005C2E; font-size:12px; color:#5A7080;
-               font-family:'IBM Plex Sans Arabic',sans-serif; direction:rtl; text-align:right;">
-       مشاركة المرأة في سوق العمل + توقعات ML حتى 2030 · هدف رؤية 2030: 30% · تم تجاوزه ✅
-    </p>
-    """, unsafe_allow_html=True)
-    st.markdown('<span class="ml-badge">🤖 ML Forecast Active</span>', unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    col_chart, col_info = st.columns([2.3, 1])
-    with col_chart:
-        fig4 = go.Figure()
-        fig4.add_trace(go.Scatter(
-            x=emp_df["Year"], y=emp_df["Female Emp %"],
-            name="Female Employment % (Historical)",
-            mode="lines+markers",
-            line=dict(color=C["g2"], width=3.5),
-            marker=dict(size=10, color=C["g2"], line=dict(color=C["white"], width=2.5)),
-            fill="tozeroy", fillcolor="rgba(0,122,61,0.08)",
-        ))
-        fig4.add_trace(go.Scatter(
-            x=FORE_YEARS, y=[round(v,1) for v in female_fore],
-            name="Female Emp % (ML Forecast)",
-            mode="lines+markers",
-            line=dict(color=C["g3"], width=2.5, dash="dash"),
-            marker=dict(size=8, symbol="diamond", color=C["g3"],
-                        line=dict(color=C["white"], width=2)),
-            fill="tonexty", fillcolor="rgba(0,166,81,0.04)",
-        ))
-        fig4.add_hline(y=30, line_dash="dash", line_color=C["red"], line_width=1.5,
-                       annotation_text="  رؤية 2030 Target: 30%",
-                       annotation_font_color=C["red"], annotation_font_size=11.5)
-        fig4.add_vline(x=2024.5, line_dash="dot", line_color="#94A3B8",
-                       annotation_text="  Forecast →", annotation_font_size=10,
-                       annotation_font_color="#94A3B8")
-        fig4.add_annotation(
-            x=2024, y=34.5,
-            text="<b>33.6% — Target Exceeded! ✅</b>",
-            showarrow=True, arrowhead=2,
-            arrowcolor=C["g1"], arrowwidth=2,
-            font=dict(color=C["g1"], size=12),
-            bgcolor=C["g_pale"], bordercolor=C["g2"], borderwidth=1.5,
-        )
-        fig4.update_layout(**CL("Female Workforce Participation (%) + ML Forecast | توظيف المرأة", [12,48]))
-        st.plotly_chart(fig4, use_container_width=True)
-
-        er1, er2 = st.columns([3,1])
-        with er1:
-            st.info(f"🤖 **ML Forecast 2030:** Female employment projected at "
-                    f"**{round(female_fore[-1],1)}%** by 2030 — "
-                    f"well above the 30% Vision target.")
-        with er2:
-            e_export = pd.concat([
-                emp_df,
-                pd.DataFrame({"Year": FORE_YEARS,
-                              "Female Emp % (Forecast)": [round(v,2) for v in female_fore]})
-            ], ignore_index=True)
-            st.download_button("📥 Download", to_csv(e_export),
-                               "v2030_employment_forecast.csv", "text/csv",
-                               use_container_width=True)
-
-    with col_info:
-        st.markdown("""
-        <div class="icard">
-            <h4>👩‍💼 Employment | التوظيف</h4>
-            <div style="background:#F0FDF6; border-radius:12px; padding:1rem;
-                        margin-bottom:10px; border:1.5px solid #BBF7D0; text-align:center;">
-                <p style="font-size:2.2rem; font-weight:800; color:#005C2E; margin:0;">33.6%</p>
-                <p style="font-size:12px; color:#5A7080; margin:3px 0 0;">
-                    Female Workforce 2024<br>
-                    <b style="color:#005C2E;">30% Target — Exceeded ✅</b><br>
-                    <span class="ar" style="font-size:11px;">تجاوز الهدف المحدد في رؤية 2030</span>
-                </p>
-            </div>
-            <div class="iitem">
-                <div class="idot" style="background:#005C2E;"></div>
-                <p class="itxt">From <b>17%</b> in 2016 to <b>33.6%</b> in 2024
-                — nearly <b style="color:#005C2E;">doubled</b> in 8 years.</p>
-            </div>
-            <div class="iitem">
-                <div class="idot" style="background:#D4A017;"></div>
-                <p class="itxt"><b>Nitaqat Saudization:</b> Mandatory
-                localization quotas across all industries.</p>
-            </div>
-            <div class="iitem">
-                <div class="idot" style="background:#2563EB;"></div>
-                <p class="itxt"><b>Unemployment:</b> Below 7% —
-                lowest in Saudi history.</p>
-            </div>
-            <div class="iitem">
-                <div class="idot" style="background:#8B5CF6;"></div>
-                <p class="itxt"><b>HR Demand:</b> Bilingual Arabic-English
-                AI talent is the #1 shortage in Vision 2030 companies.</p>
-            </div>
-            <div style="background:#FFFBEB; border-radius:10px; padding:10px 12px;
-                        margin-top:8px; border:1px solid #FDE68A;">
-                <p style="margin:0; font-size:11px; font-weight:700; color:#92400E;">
-                    📡 Source: GASTAT</p>
-                <p style="margin:0; font-size:11px; color:#5A7080;">stats.gov.sa</p>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown("##### 👩‍💼 Female Workforce Participation Tracks")
+    fig_e = go.Figure()
+    fig_e.add_trace(go.Scatter(x=emp_df["Year"], y=emp_df["Female Emp %"], name="Actual Workforce %", mode="lines+markers", line=dict(color=C["g2"], width=3)))
+    fig_e.add_trace(go.Scatter(x=FORE_YEARS, y=female_fore, name="ML Forecast", mode="lines+markers", line=dict(color=C["g3"], width=2, dash="dash")))
+    fig_e.add_hline(y=30, line_dash="dot", line_color=C["gold"], annotation_text="Original 2030 Target (30%)")
+    fig_e.update_layout(**CL("Female Labor Force Inclusion Rate (%)"))
+    st.plotly_chart(fig_e, use_container_width=True)
 
 # ══════════════════════════════════════════════════════════════
 # TAB 5 — AI & TECH
 # ══════════════════════════════════════════════════════════════
 with tab5:
-    st.markdown("""
-    <p style="background:#F0FDF6; padding:8px 14px; border-radius:8px;
-               border-right:3px solid #005C2E; font-size:12px; color:#5A7080;
-               font-family:'IBM Plex Sans Arabic',sans-serif; direction:rtl; text-align:right;">
-       استثمارات المملكة العربية السعودية في الذكاء الاصطناعي والبنية التحتية التقنية — 2025
-    </p>
-    """, unsafe_allow_html=True)
-
-    col_chart, col_info = st.columns([2.3, 1])
-    with col_chart:
-        fig5 = go.Figure()
-        fig5.add_trace(go.Bar(
-            x=ai_df["Initiative"],
-            y=ai_df["Amount (USD B)"],
-            marker=dict(
-                color=[C["g1"],C["gold"],C["b2"],C["b3"],"#8B5CF6"],
-                line=dict(color=C["white"], width=2)
-            ),
-            text=["$"+str(v)+"B" for v in ai_df["Amount (USD B)"]],
-            textposition="outside",
-            textfont=dict(color=C["navy"], size=13, family="Outfit"),
-            hovertemplate="<b>%{x}</b><br>$%{y}B<extra></extra>",
-        ))
-        fig5.update_layout(
-            **CL("Saudi AI & Cloud Investment (USD B) | استثمارات الذكاء الاصطناعي 2025", [0,118]),
-            showlegend=False,
-        )
-        st.plotly_chart(fig5, use_container_width=True)
-
-        ai_r1, ai_r2 = st.columns([3,1])
-        with ai_r1:
-            st.info("🤖 Saudi Arabia's **$122.7B total AI investment** in 2025 makes it the "
-                    "world's fastest-growing AI market — anchored by HUMAIN's $100B sovereign fund.")
-        with ai_r2:
-            st.download_button("📥 Download", to_csv(ai_df),
-                               "v2030_ai_investment.csv", "text/csv",
-                               use_container_width=True)
-
-    with col_info:
-        st.markdown("""
-        <div class="icard">
-            <h4>🤖 AI & Tech | الذكاء الاصطناعي</h4>
-            <div style="background:#F0FDF6; border-radius:10px; padding:10px 12px;
-                        margin-bottom:8px; border-left:4px solid #005C2E;">
-                <p style="margin:0; font-size:13px; font-weight:700; color:#005C2E;">
-                    HUMAIN — $100B</p>
-                <p style="margin:0; font-size:12px; color:#5A7080;">
-                    PIF-backed sovereign AI company.<br>
-                    Partners: Nvidia, AMD, AWS, Google<br>
-                    <span class="ar" style="font-size:11px;">شركة الذكاء الاصطناعي السعودية</span>
-                </p>
-            </div>
-            <div style="background:#FFFBEB; border-radius:10px; padding:10px 12px;
-                        margin-bottom:8px; border-left:4px solid #D4A017;">
-                <p style="margin:0; font-size:13px; font-weight:700; color:#B8860B;">
-                    Nvidia Deal — $14.9B</p>
-                <p style="margin:0; font-size:12px; color:#5A7080;">
-                    Largest-ever GPU deal globally.<br>18,000+ Blackwell AI chips</p>
-            </div>
-            <div style="background:#EFF6FF; border-radius:10px; padding:10px 12px;
-                        margin-bottom:8px; border-left:4px solid #2563EB;">
-                <p style="margin:0; font-size:13px; font-weight:700; color:#1E40AF;">
-                    AWS + Google + Microsoft</p>
-                <p style="margin:0; font-size:12px; color:#5A7080;">
-                    $7.8B combined cloud in Saudi Arabia</p>
-            </div>
-            <div style="background:linear-gradient(135deg,#004D26,#007A3D);
-                        border-radius:10px; padding:12px; text-align:center;">
-                <p style="color:#FFFFFF; margin:0; font-size:12px; font-weight:700;">
-                    🤖 An-Nasir AI</p>
-                <p style="color:rgba(255,255,255,0.8); margin:3px 0 0; font-size:11px;">
-                    Arabic-English AI Agent<br>
-                    Vertex AI + ADK · Vision 2030<br>
-                    <span class="ar">وكيل ذكاء اصطناعي ثنائي اللغة</span>
-                </p>
-                <a href="https://github.com/zaidug987198-design/v2030-pulse"
-                   target="_blank"
-                   style="display:block; background:rgba(255,255,255,0.18);
-                          color:#FFFFFF; text-decoration:none; border-radius:7px;
-                          padding:5px 10px; font-size:11px; font-weight:700;
-                          margin-top:8px; border:1px solid rgba(255,255,255,0.3);">
-                    🐙 View on GitHub
-                </a>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class="premium-banner">
-        <p style="color:#D4A017; font-size:12px; font-weight:800;
-                   text-transform:uppercase; letter-spacing:1px; margin:0 0 6px;">
-            🔒 Unlock: Saudi AI Market Intelligence Report 2026
-        </p>
-        <p style="color:rgba(255,255,255,0.85); font-size:13px; margin:0 0 4px;">
-            Complete Saudi AI ecosystem analysis — HUMAIN deep dive,
-            Vision 2030 tech talent gaps, bilingual AI deployment strategies,
-            investment landscape for Indian tech companies entering Saudi market.
-        </p>
-        <p style="color:rgba(255,255,255,0.60); font-size:12px; margin:0;">
-            📩 zaidug987198@gmail.com &nbsp;|&nbsp;
-            <b style="color:#D4A017;">SAR 1,000 – 2,000</b> &nbsp;|&nbsp;
-            Arabic + English · Delivered in 5 business days
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# ══════════════════════════════════════════════════════════════
-# FOOTER
-# ══════════════════════════════════════════════════════════════
-st.divider()
-st.markdown(f"""
-<div style="background:#FFFFFF; border:1.5px solid #E4EAF2; border-radius:16px;
-            padding:1.25rem 1.75rem; display:flex; justify-content:space-between;
-            align-items:center; flex-wrap:wrap; gap:14px;
-            box-shadow:0 2px 10px rgba(0,0,0,0.04);">
-    <div style="display:flex; align-items:center; gap:14px;">
-        {LOGO_SVG}
-        <div>
-            <p style="margin:0; font-size:14px; font-weight:800; color:#0D1F2D;">
-                V2030 Intelligence Hub</p>
-            <p style="margin:3px 0 0; font-size:12px; color:#5A7080;">
-                Data: open.data.gov.sa · vision2030.gov.sa · GASTAT · SDAIA · World Bank
-            </p>
-            <p style="margin:2px 0 0; font-size:11px; color:#94A3B8;
-                       font-family:'IBM Plex Sans Arabic',sans-serif;">
-                جميع البيانات من المصادر الحكومية السعودية الرسمية
-            </p>
-        </div>
-    </div>
-    <div style="text-align:right;">
-        <p style="margin:0; font-size:13px; font-weight:700; color:#005C2E;">
-            Engineered by Mohammad Zaid</p>
-        <p style="margin:2px 0 4px; font-size:11.5px; color:#5A7080;">
-            Hafiz-e-Quran · Arabic C1 · Google Gen AI APAC 2026 · Jamia Hamdard
-        </p>
-        <div style="display:flex; gap:7px; justify-content:flex-end;">
-            <a href="https://github.com/zaidug987198-design/v2030-pulse"
-               target="_blank"
-               style="background:#0D1F2D; color:#FFFFFF; text-decoration:none;
-                       border-radius:7px; padding:5px 12px; font-size:11.5px;
-                       font-weight:700;">🐙 GitHub</a>
-            <a href="https://www.linkedin.com/in/mohammad-zaid-289368379/"
-               target="_blank"
-               style="background:#0A66C2; color:#FFFFFF; text-decoration:none;
-                       border-radius:7px; padding:5px 12px; font-size:11.5px;
-                       font-weight:700;">💼 LinkedIn</a>
-            <a href="mailto:zaidug987198@gmail.com"
-               style="background:linear-gradient(135deg,#D4A017,#F0C040);
-                       color:#1A1000; text-decoration:none; border-radius:7px;
-                       padding:5px 12px; font-size:11.5px; font-weight:700;">
-                📧 Contact</a>
-        </div>
-    </div>
-</div>
-<p style="text-align:center; font-size:11px; color:#94A3B8; margin-top:10px;">
-    © 2026 Mohammad Zaid | Python · Streamlit · Plotly · NumPy ML Forecasting |
-    All data sourced from official Saudi government portals
-</p>
-""", unsafe_allow_html=True)
+    st.markdown("##### 🤖 Enterprise AI & Sovereign Technology Inflow")
+    fig_ai = px.pie(ai_df, values="Amount (USD B)", names="Initiative", hole=0.4, color_discrete_sequence=[C["g1"], C["g2"], C["gold"], C["b1"], C["b2"]])
+    fig_ai.update_layout(**CL("Major Sovereign Tech Portfolios & Infrastructure Deals"))
+    st.plotly_chart(fig_ai, use_container_width=True)
