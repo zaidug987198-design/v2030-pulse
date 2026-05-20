@@ -1222,4 +1222,4 @@ st.markdown(f"""
     © 2026 Mohammad Zaid | Python · Streamlit · Plotly · NumPy ML Forecasting |
     All data sourced from official Saudi government portals
 </p>
-"""
+""", unsafe_allow_html=True)
