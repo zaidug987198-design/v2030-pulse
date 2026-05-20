@@ -10,39 +10,35 @@ st.set_page_config(
     layout="wide"
 )
 
-# 2. STRICT HIGH-CONTRAST UI STYLE (No-Hide Text Assurance)
+# 2. FIXED STYLING FOR MAXIMUM VISIBILITY (No hidden text, Auto-Theme Safe)
 st.markdown("""
 <style>
-    .main { background-color: #030914 !important; }
-    
-    /* Transparent High-Visibility Glass Cards */
+    /* Metric Cards - Solid contrasting background for any mode */
     [data-testid="stMetric"] {
-        background: rgba(11, 24, 40, 0.85) !important;
+        background: #0B1828 !important;
         border: 1px solid #1E3050 !important;
         border-radius: 12px !important;
         padding: 18px !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
     }
     
-    /* Strict Label Formatting for Readability */
+    /* Ensuring absolute readability inside cards */
     .stMetric label { color: #C9A84C !important; font-size: 1.05rem !important; font-weight: 700 !important; }
     [data-testid="stMetricValue"] { color: #FFFFFF !important; font-size: 2.1rem !important; font-weight: bold !important; }
-    [data-testid="stMetricDelta"] { font-size: 0.95rem !important; }
     
-    /* High-contrast Titles and Headers */
-    h1, h2, h3, .stMarkdown, p { color: #FFFFFF !important; font-family: 'Inter', sans-serif !important; }
-    
-    /* Custom CSS for Verified Badges */
+    /* Custom Badges */
     .gov-badge { background-color: #006C35; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; }
     .hr-badge { background-color: #C9A84C; color: black; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── SIDEBAR: STRUCTURAL INTEGRITY & CONTROLS ──
+# ── SIDEBAR: CLEANED & FIXED ──
 with st.sidebar:
-    st.image("https://www.vision2030.gov.sa/media/rc0bc1v2/vision2030_logo_en.svg", width=180)
+    # Title replaced the broken image icon completely
+    st.markdown("### 🇸🇦 Vision 2030 Portal")
     st.markdown("---")
-    st.markdown("### 🏢 **Target Audience View**")
+    # Changed from 'Target Audience View' to 'Audience View'
+    st.markdown("### 🏢 **Audience View**")
     view_mode = st.radio("Optimize Analytics For:", ["🏛️ Government Metrics", "💼 HR & Talent Acquisition", "👥 Public General Impact"])
     st.markdown("---")
     st.markdown("### 🛠️ **System Status**")
@@ -54,7 +50,7 @@ st.title("🇸🇦 Vision 2030 Pulse | نبض رؤية 2030")
 st.markdown("#### National Transformation & Economic Intelligence | Executive Portfolio Optimization")
 st.divider()
 
-# ── TOP LAYER KEY METRICS (Cross-Validated Targets) ──
+# ── TOP LAYER KEY METRICS ──
 k1, k2, k3, k4, k5 = st.columns(5)
 with k1: st.metric("Non-Oil GDP Share", "50.2%", "↑ 4.1% (Target: 50% ✅)")
 with k2: st.metric("National Digital Payments", "79.0%", "↑ 22.0% (SAMA Index)")
@@ -88,17 +84,12 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "🤖 Emerging Tech & Strategic AI"
 ])
 
-# Shared Visualization Layout Engine (Guarantees Text Visibility)
+# Shared Visualization Layout Engine (Guarantees Text Visibility dynamically)
 def global_layout_engine(fig, chart_title):
     fig.update_layout(
-        title=dict(text=chart_title, font=dict(color='#C9A84C', size=16)),
-        plot_bgcolor='rgba(0,0,0,0)',
-        paper_bgcolor='rgba(0,0,0,0)',
-        font_color='#F0F4FF',
-        xaxis=dict(gridcolor='#14233C', zeroline=False),
-        yaxis=dict(gridcolor='#14233C', zeroline=False),
-        legend=dict(font=dict(color='#FFFFFF')),
-        margin=dict(l=40, r=40, t=50, b=40)
+        title=dict(text=chart_title, font=dict(size=16)),
+        margin=dict(l=40, r=40, t=50, b=40),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
     )
     return fig
 
@@ -111,6 +102,7 @@ with tab1:
         st.plotly_chart(global_layout_engine(fig1, "Structural Diversification: Oil vs Non-Oil GDP"), use_container_width=True)
     with col_e2:
         st.markdown("<span class='hr-badge'>💼 RECRUITER INSIGHTS</span>", unsafe_allow_html=True)
+        st.write("")
         st.markdown("""
         * **Nitaqat Compliance:** National talent matching has driven domestic localized employment down to historical unemployment lows.
         * **HR Opportunity Matrix:** High velocity hiring fields detected in Cyber Architecture, Financial Analytics, and Hospitality Management.
@@ -125,6 +117,7 @@ with tab2:
         st.plotly_chart(global_layout_engine(fig2, "Tourism Performance Metrics vs Strategic Targets"), use_container_width=True)
     with col_t2:
         st.markdown("<span class='gov-badge'>🏛️ GOVERNMENT AUDIT</span>", unsafe_allow_html=True)
+        st.write("")
         st.markdown("""
         * **Target Evaluation:** Current execution trends represent a 115M annual footprint, positioning the Kingdom to capture the 150M milestone ahead of schedule.
         * **Public Welfare Impact:** Leisure sector expansion has generated directly over 250,000+ localized new jobs for regional citizens.
@@ -140,7 +133,7 @@ with tab3:
     with col_s2:
         st.markdown("#### 🏗️ Giga-Project Capital Status Tracker")
         project_data = pd.DataFrame({
-            "Core Giga-Project": ["NEOM", "The Red Sea Project", "Qiddiya Core", "ROSHN Housing Development"],
+            "Core Giga-Project": ["NEOM", "The Red Sea Project", "Qiddiya Core", "ROSHN Housing"],
             "Operational Focus": ["Cognitive Urban AI", "Regenerative Eco-Tourism", "Global Sports & Entertainment", "National Asset Infrastructure"],
             "State Framework Target": ["Net-Zero Carbon Realized", "100% Microgrid Renewables", "Global Entertainment Capital", "70% Civilian Homeownership"]
         })
@@ -149,7 +142,26 @@ with tab3:
 with tab4:
     st.markdown("### High-Performance Computing, Sovereignty & Cloud Scaling")
     ai_data = {
-        "Strategic Initiative":["HUMAIN (PIF Fund)","Nvidia Enterprise Deal","AWS Infrastructure Hub","Google Cloud Region","Microsoft Cloud Cloud"],
+        "Strategic Initiative":["HUMAIN (PIF Fund)","Nvidia Enterprise Deal","AWS Infrastructure Hub","Google Cloud Region","Microsoft Cloud Region"],
         "Capital Volume ($B)":[100.0, 14.9, 5.3, 1.0, 1.5],
         "Architecture Vector":["Sovereign Asset Fund", "AI Hardware Cluster", "Cloud Foundation Layer", "Cloud Foundation Layer", "Cloud Foundation Layer"]
     }
+    fig4 = px.bar(pd.DataFrame(ai_data), x="Strategic Initiative", y="Capital Volume ($B)", color="Architecture Vector",
+                  color_discrete_sequence=['#C9A84C', '#5DCAA5', '#16315C'])
+    st.plotly_chart(global_layout_engine(fig4, "SDAIA Managed AI Capital Deployment Strategy (USD Billions)"), use_container_width=True)
+
+# ── ELITE FOOTER: DUAL METADATA CREDENTIAL PANEL ──
+st.divider()
+footer_col1, footer_col2 = st.columns([2, 1])
+
+with footer_col1:
+    st.markdown("""
+    **Framework Specification Notice:** This interactive enterprise asset is engineered by **Mohammad Zaid** using verified reference statistics from the Saudi General Authority for Statistics (`open.data.gov.sa`) and the National Vision 2030 Bureau. It showcases analytical instrumentation, deployment safety protocols, and automated pipeline structuring.
+    """)
+
+with footer_col2:
+    st.markdown("<p style='color:#C9A84C; font-weight:bold; margin-bottom: 2px;'>SYSTEM DEVELOPER PATHWAYS</p>", unsafe_allow_html=True)
+    st.markdown("📦 [Access GitHub Source Repository](https://github.com/zaidug987198-design)")
+    st.markdown("👔 [Review Professional Credentials on LinkedIn](https://www.linkedin.com/in/mohammad-zaid-289368379/)")
+
+st.caption("© 2026 Mohammad Zaid | Jamia Hamdard | Google Gen AI APAC Academy Integration Asset")
