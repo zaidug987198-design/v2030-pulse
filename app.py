@@ -1,8 +1,8 @@
-╔══════════════════════════════════════════════════════════════════════╗
+
 ║  Saudi Vision 2030 Strategic Intelligence Hub                        ║
 ║  مؤشر تقدم رؤية المملكة العربية السعودية 2030                       ║
 ║  Built by: Mohammad Zaid | Jamia Hamdard | Google Gen AI APAC 2026  ║
-╚══════════════════════════════════════════════════════════════════════╝
+
 
 import streamlit as st
 import plotly.express as px
